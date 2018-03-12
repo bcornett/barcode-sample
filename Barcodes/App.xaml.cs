@@ -8,7 +8,7 @@ namespace Barcodes
         {
             InitializeComponent();
 
-            MainPage = new BarcodesPage();
+            MainPage = new NavigationPage(new BarcodesPage());
         }
 
         protected override void OnStart()

@@ -11,6 +11,7 @@ using Android.OS;
 namespace Barcodes.Droid
 {
     [Activity(Label = "Barcodes.Droid", Icon = "@drawable/icon", Theme = "@style/MyTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
+    [assembly: UsesPermission(Android.Manifest.Permission.Flashlight)]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
         protected override void OnCreate(Bundle bundle)
@@ -22,7 +23,14 @@ namespace Barcodes.Droid
 
             global::Xamarin.Forms.Forms.Init(this, bundle);
 
+            ZXing.Net.Mobile.Forms.Android.Platform.Init();
+
             LoadApplication(new App());
+        }
+
+        public override void OnRequestPermissionsResult(int requestCode, string[] permissions, Permission[] grantResults)
+        {
+            global::ZXing.Net.Mobile.Forms.Android.PermissionsHandler.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
     }
 }
