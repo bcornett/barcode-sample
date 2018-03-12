@@ -11,18 +11,6 @@ namespace Barcodes
             InitializeComponent();
         }
 
-		protected override void OnAppearing()
-		{
-            btnScan.Clicked += ScanBarcode;
-			base.OnAppearing();
-		}
-
-		protected override void OnDisappearing()
-		{
-            btnScan.Clicked -= ScanBarcode;
-            base.OnDisappearing();
-		}
-
 		private async void ScanBarcode(object sender, EventArgs e) 
         {
             var scanPage = new ZXingScannerPage();
